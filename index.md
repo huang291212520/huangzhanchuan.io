@@ -99,5 +99,72 @@ export default Vue.extend({
 });
 ```
 
-4、
+---
 
+额外补充：使用vue.extend的方式时，组件的props校验需要使用额外的方式
+
+```javascript
+import Vue,{ PropType } from "vue";
+interface arr {
+	id:number,
+	value:string
+}
+export default Vue.extend({
+	props:{
+		arrList:{
+			required:true,
+			type:Array as PropType<arr[]>
+		}
+	}
+})
+```
+
+如果编辑器对组件接收了错误的参数没有报错提示，可以查看编辑器配置，以vscode + vetur 举例
+
+![](./vueAddTs/vscodeForVetur.png)
+
+另外注意项目中的.vscode 文件夹中 setting.json 的配置
+
+```json
+{
+    "vetur.validation.interpolation": true
+}
+```
+
+
+
+---
+
+
+
+4、额外补充 在vue2中使用 ?. 和 ?? 语法
+
+- 安装babel 的plugin-proposal-optional-chaining
+
+  ```javascript
+  yarn add @babel/plugin-proposal-optional-chaining -S
+  ```
+
+- 创建或修改babel.config.js
+
+  ```
+  module.exports = {
+      // 在plugins下添加如下代码
+      plugins: [
+          ["@babel/plugin-proposal-optional-chaining"]  //解析 可选链式语法
+      ]
+  }
+  ```
+
+- vue.config.js 中配置chainWebpack
+
+	```
+  chainWebpack:config=>{
+  		config.module
+			.use('babel-loader')
+			.loader('babel-loader')
+			.end()
+  }
+	```
+
+  
