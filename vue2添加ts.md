@@ -1,8 +1,7 @@
-### 记一次 vue2 添加typescript支持的经验
+### vue2 添加typescript
 
 前提：本项目因时间原因没有使用`vue-property-derocator`去做重构，仅仅只是在原项目的基础上进行了ts语法、文件支持，默认已安装vuecli和typescript
 
-那么现在开始
 
 ---
 
